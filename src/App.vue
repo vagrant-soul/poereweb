@@ -85,21 +85,20 @@ const optionsGroup2 = [
 
 // 单选框选项配置
 const radioOptions = [
-  { label: '单选1', value: 'radio1' },
-  { label: '单选2', value: 'radio2' },
-  { label: '单选3', value: 'radio3' },
+  { label: '完全匹配', value: 'and' },
+  { label: '任意匹配', value: 'or' },
 ]
 
 // 响应式数据
 const selectedOptionsGroup1 = ref<string[]>([])
 const selectedOptionsGroup2 = ref<string[]>([])
-const selectedRadioOption = ref<string>('')
+const selectedRadioOption = ref<string>('and')
 // 重置函数
 const handleReset = () => {
   // 重置所有选择项
   selectedOptionsGroup1.value = []
   selectedOptionsGroup2.value = []
-  selectedRadioOption.value = ''
+  selectedRadioOption.value = 'and'
 
   // 可以在这里添加重置后的其他逻辑，如提示信息
 }
@@ -107,23 +106,28 @@ const handleReset = () => {
 // 修改displayText计算属性，直接显示value值
 const displayText = computed(() => {
   const results: string[] = []
-
-  // 处理第一组复选框 - 直接显示value值
-  if (selectedOptionsGroup1.value.length > 0) {
-    results.push(`选项组1: ${selectedOptionsGroup1.value.join(', ')}`)
+  const selectedMode = selectedRadioOption.value || 'and' // 默认使用and模式
+  // 合并所有选中的选项
+  const allSelectedOptions = [...selectedOptionsGroup1.value, ...selectedOptionsGroup2.value]
+  // 根据radio值处理选项显示格式
+  if (allSelectedOptions.length > 0) {
+    if (selectedMode === 'and') {
+      // and模式：每个值用""包含并直接连接，如"1""2""A"
+      const formattedText = allSelectedOptions.map((opt) => `"${opt}"`).join('')
+      results.push(`${formattedText}`)
+    } else if (selectedMode === 'or') {
+      // or模式：值用|连接，最外层用""包含，如"2|A|C"
+      const formattedText = `"${allSelectedOptions.join('|')}"`
+      results.push(`${formattedText}`)
+    }
   }
 
-  // 处理第二组复选框 - 直接显示value值
-  if (selectedOptionsGroup2.value.length > 0) {
-    results.push(`选项组2: ${selectedOptionsGroup2.value.join(', ')}`)
-  }
+  // // 处理单选框显示（可选）
+  // if (selectedRadioOption.value) {
+  //   results.push(`${selectedRadioOption.value}`)
+  // }
 
-  // 处理单选框 - 直接显示value值
-  if (selectedRadioOption.value) {
-    results.push(`单选值: ${selectedRadioOption.value}`)
-  }
-
-  return results.length > 0 ? results : ''
+  return results.length > 0 ? results.join('\n') : ''
 })
 </script>
 <style scoped>
