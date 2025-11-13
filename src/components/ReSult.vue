@@ -39,7 +39,7 @@
 
         <!-- 下方两个并排的按钮 -->
         <n-flex class="bottom-buttons">
-          <n-button type="error" style="min-width: 100px">
+          <n-button type="error" style="min-width: 100px" @click="handleReset">
             <template #icon>
               <n-icon>
                 <Reload />
@@ -70,8 +70,17 @@
 import { Reload, Search, Star } from '@vicons/ionicons5'
 // 只接收显示文本，不包含业务逻辑
 const { displayText } = defineProps<{
-  displayText: string
+  displayText: string[] | string
 }>()
+// 定义事件
+const emit = defineEmits<{
+  reset: []
+}>()
+// 处理重置按钮点击
+const handleReset = () => {
+  // 发出重置事件
+  emit('reset')
+}
 </script>
 
 <style scoped>
