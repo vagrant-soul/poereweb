@@ -12,7 +12,7 @@
           />
           <div style="flex: 1">
             <div class="header-text">
-              这里会有很多的内容到下面...这里会有很多的内容到下面...这里会有很多的内容到下面...这里会有很多的内容到下面...这里会有很多的内容到下面...这里会有很多的内容到下面...
+              {{ displayText }}
             </div>
             <n-flex justify="flex-end" align="center">
               <div class="char-count">字符长度:20/150</div>
@@ -68,6 +68,10 @@
 
 <script setup lang="ts">
 import { Reload, Search, Star } from '@vicons/ionicons5'
+// 只接收显示文本，不包含业务逻辑
+const { displayText } = defineProps<{
+  displayText: string
+}>()
 </script>
 
 <style scoped>
