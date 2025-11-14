@@ -1,5 +1,5 @@
 // 支持的语言类型
-export type LocaleType = 'zh-CN' | 'en' | 'ja'
+export type LocaleType = 'zh-CN' | 'en' | 'zh-TW'
 
 // 语言选项类型
 export interface LocaleOption {

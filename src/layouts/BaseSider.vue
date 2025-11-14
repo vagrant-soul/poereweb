@@ -40,9 +40,9 @@ const menuOptions: MenuOption[] = [
             path: '/',
           },
         },
-        { default: () => '首页' },
+        { default: () => '地图正则' },
       ),
-    key: 'go-to-home',
+    key: 'WayStone',
     icon: renderIcon(HomeIcon),
   },
   // 分隔线
@@ -61,12 +61,68 @@ const menuOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
+            path: '/table',
+          },
+        },
+        { default: () => '碑牌正则' },
+      ),
+    key: 'Table',
+    icon: renderIcon(WorkIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            path: '/relics',
+          },
+        },
+        { default: () => '圣物正则' },
+      ),
+    key: 'Relics',
+    icon: renderIcon(WorkIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            path: '/vendor',
+          },
+        },
+        { default: () => '商店正则' },
+      ),
+    key: 'Vendor',
+    icon: renderIcon(WorkIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            path: '/home',
+          },
+        },
+        { default: () => '首页测试页' },
+      ),
+    key: 'Home',
+    icon: renderIcon(WorkIcon),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
             path: '/test',
           },
         },
-        { default: () => '测试页' },
+        { default: () => '测试页1' },
       ),
-    key: 'go-to-work',
+    key: 'Test',
     icon: renderIcon(WorkIcon),
   },
   {
@@ -80,7 +136,7 @@ const menuOptions: MenuOption[] = [
         },
         { default: () => '测试页2' },
       ),
-    key: 'go-to-demo',
+    key: 'Demo',
     icon: renderIcon(WorkIcon),
   },
 ]

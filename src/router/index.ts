@@ -8,9 +8,25 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/HomePage.vue'),
-        name: 'Home',
+        component: () => import('@/views/WayStonePage.vue'),
+        name: 'WayStone',
       },
+      {
+        path: 'table',
+        component: () => import('@/views/TablePage.vue'),
+        name: 'Table',
+      },
+      {
+        path: 'relics',
+        component: () => import('@/views/RelicsPage.vue'),
+        name: 'Relics',
+      },
+      {
+        path: 'vendor',
+        component: () => import('@/views/VendorPage.vue'),
+        name: 'Vendor',
+      },
+
       {
         path: 'test',
         component: () => import('@/views/TestPage.vue'),
@@ -20,6 +36,11 @@ const routes = [
         path: 'demo',
         component: () => import('@/views/NewTableTest.vue'),
         name: 'TestDemo',
+      },
+      {
+        path: 'home',
+        component: () => import('@/views/HomePage.vue'),
+        name: 'Home',
       },
     ],
   },

@@ -7,13 +7,13 @@ import { setStoredLocale, getStoredLocale } from '@/utils/storage'
 // 导入NaiveUI语言包
 import zhCN from '@/locales/naive/zhCN'
 import enUS from '@/locales/naive/enUS'
-import jaJP from '@/locales/naive/jaJP'
+import zhTW from '@/locales/naive/zhTW '
 
 // 语言选项配置
 export const localeOptions: LocaleOption[] = [
-  { label: '中文', value: 'zh-CN' },
+  { label: '简体中文', value: 'zh-CN' },
   { label: 'English', value: 'en' },
-  { label: '日本語', value: 'ja' },
+  { label: '正體中文', value: 'zh-TW' },
 ]
 
 // NaiveUI语言包映射
@@ -21,7 +21,7 @@ type NaiveUILocale = typeof zhCN
 const naiveLocales: Record<LocaleType, NaiveUILocale> = {
   'zh-CN': zhCN,
   en: enUS,
-  ja: jaJP,
+  'zh-TW': zhTW,
 }
 
 // 预加载过的语言缓存
@@ -78,19 +78,19 @@ export const useLocaleStore = defineStore('locale', {
       const browserLocale = navigator?.language?.split('-')[0] || ''
 
       // 确定默认语言
-      let defaultLocale: LocaleType = 'zh-CN'
+      let defaultLocale: LocaleType = 'zh-TW'
 
       if (
         storedLocale &&
-        (storedLocale === 'zh-CN' || storedLocale === 'en' || storedLocale === 'ja')
+        (storedLocale === 'zh-CN' || storedLocale === 'en' || storedLocale === 'zh-TW')
       ) {
         defaultLocale = storedLocale
-      } else if (browserLocale === 'en' || browserLocale === 'ja') {
+      } else if (browserLocale === 'en' || browserLocale === 'zh-TW') {
         defaultLocale = browserLocale
       }
 
       // 如果不是默认语言，需要加载语言包
-      if (defaultLocale !== 'zh-CN') {
+      if (defaultLocale !== 'zh-TW') {
         await this.setLocale(defaultLocale)
       }
     },

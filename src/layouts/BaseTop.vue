@@ -10,11 +10,7 @@
     "
   >
     <div class="left-group" style="display: flex; align-items: center; gap: 16px">
-      <n-image
-        width="30"
-        src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-        preview-disabled
-      />
+      <n-image width="30" src="../public/UniqueAtlasSkillBook.png" preview-disabled />
       <div>{{ $t('app.title') }}</div>
     </div>
 

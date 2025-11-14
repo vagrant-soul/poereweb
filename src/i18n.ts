@@ -1,15 +1,15 @@
 // 简化i18n.ts，只负责创建实例
 import { createI18n, type I18nOptions } from 'vue-i18n'
-import zhCN from './locales/lang/zh-CN.json'
+import zhTW from './locales/lang/zh-TW.json'
 
 // 创建基础i18n实例
 const i18nOptions: I18nOptions = {
   legacy: false,
-  locale: 'zh-CN',
-  fallbackLocale: 'zh-CN',
+  locale: 'zh-TW',
+  fallbackLocale: 'zh-TW',
   silentTranslationWarn: true,
   messages: {
-    'zh-CN': zhCN,
+    'zh-TW': zhTW,
   },
 }
 
