@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "Language Switch Demo",
+    "description": "Based on Vue, TypeScript, Pinia and NaiveUI",
+    "actionButton": "Click Button",
+    "checkboxLabel": "Agree to privacy policy",
+    "language": "Language",
+    "sponsor": "Sponsor"
+  },
+  "message": {
+    "buttonClicked": "Button clicked!",
+    "checkboxChanged": "Checkbox state changed"
+  }
+}

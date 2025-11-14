@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "多语言切换示例",
+    "description": "基于Vue、TypeScript、Pinia和NaiveUI",
+    "actionButton": "点击按钮",
+    "checkboxLabel": "同意隐私政策",
+    "language": "语言",
+    "sponsor": "赞助"
+  },
+  "message": {
+    "buttonClicked": "按钮被点击了！",
+    "checkboxChanged": "复选框状态改变了"
+  }
+}

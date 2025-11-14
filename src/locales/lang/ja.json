@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "言語切り替えデモ",
+    "description": "Vue、TypeScript、Pinia、NaiveUIに基づく",
+    "actionButton": "ボタンをクリック",
+    "checkboxLabel": "プライバシーポリシーに同意",
+    "language": "言語",
+    "sponsor": "スポンサー"
+  },
+  "message": {
+    "buttonClicked": "ボタンがクリックされました！",
+    "checkboxChanged": "チェックボックスの状態が変更されました"
+  }
+}

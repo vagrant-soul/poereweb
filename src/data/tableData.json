@@ -1,0 +1,4 @@
+[
+  { "id": "1", "name": "项目A", "description": "这是第一个项目", "value": 100 },
+  { "id": "2", "name": "项目B", "description": "这是第二个项目", "value": 200 }
+]
