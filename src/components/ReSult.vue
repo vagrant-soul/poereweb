@@ -34,7 +34,7 @@
               <Search />
             </n-icon>
           </template>
-          POE 正则生成
+          复制正则字符
         </n-button>
 
         <!-- 下方两个并排的按钮 -->

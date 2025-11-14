@@ -5,7 +5,11 @@
     "actionButton": "点击按钮",
     "checkboxLabel": "同意隐私政策",
     "language": "语言",
-    "sponsor": "赞助"
+    "sponsor": "赞助",
+    "menuwaystones": "引路石",
+    "menutablet": "石板",
+    "menurelics": "遗物",
+    "menuvendor": "商店"
   },
   "message": {
     "buttonClicked": "按钮被点击了！",

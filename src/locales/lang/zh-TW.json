@@ -5,7 +5,11 @@
     "actionButton": "ボタンをクリック",
     "checkboxLabel": "プライバシーポリシーに同意",
     "language": "言語",
-    "sponsor": "スポンサー"
+    "sponsor": "スポンサー",
+    "menuwaystones": "換界石",
+    "menutablet": "碑牌",
+    "menurelics": "聖物",
+    "menuvendor": "商店"
   },
   "message": {
     "buttonClicked": "ボタンがクリックされました！",

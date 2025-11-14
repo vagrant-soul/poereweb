@@ -12,8 +12,8 @@ const routes = [
         name: 'WayStone',
       },
       {
-        path: 'table',
-        component: () => import('@/views/TablePage.vue'),
+        path: 'tablet',
+        component: () => import('@/views/TabletPage.vue'),
         name: 'Table',
       },
       {

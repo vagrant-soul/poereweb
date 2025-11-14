@@ -3,7 +3,7 @@
     bordered
     collapse-mode="width"
     :collapsed-width="64"
-    :width="240"
+    :width="160"
     :collapsed="collapsed"
     show-trigger
     @collapse="collapsed = true"
@@ -13,7 +13,7 @@
       v-model:value="activeKey"
       :collapsed="collapsed"
       :collapsed-width="64"
-      :collapsed-icon-size="22"
+      :collapsed-icon-size="23"
       :options="menuOptions"
     />
   </n-layout-sider>
@@ -21,15 +21,36 @@
 
 <script setup lang="ts">
 import type { Component } from 'vue'
-import { LogOutOutline as HomeIcon, LaptopOutline as WorkIcon } from '@vicons/ionicons5'
+import { LaptopOutline as WorkIcon } from '@vicons/ionicons5'
+import WaystoneIcon from '../../public/waystone_icon.png'
+import RelicIcon from '../../public/relic_icon.png'
+import TabletIcon from '../../public/tablet_icon.png'
+import VendorIcon from '../../public/vendor_icon.png'
 import type { MenuOption } from 'naive-ui'
 import { NIcon } from 'naive-ui'
 import { h, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-function renderIcon(icon: Component) {
+import { useI18n } from 'vue-i18n'
+
+function renderIcon(icon: Component | string) {
+  // 如果icon是字符串，视为图片路径并渲染图片
+  if (typeof icon === 'string') {
+    return () =>
+      h(NIcon, null, {
+        default: () =>
+          h('img', {
+            src: icon, // 直接使用传入的字符串作为路径
+            style: {
+              width: '23px', // 增加图片宽度，默认为16px
+              height: '23px', // 增加图片高度，默认为16px
+            },
+          }),
+      })
+  }
+  // 保留原有的组件渲染逻辑
   return () => h(NIcon, null, { default: () => h(icon) })
 }
-
+const { t } = useI18n()
 const menuOptions: MenuOption[] = [
   {
     label: () =>
@@ -40,34 +61,25 @@ const menuOptions: MenuOption[] = [
             path: '/',
           },
         },
-        { default: () => '地图正则' },
+        { default: () => t('app.menuwaystones') }, //換界石
       ),
     key: 'WayStone',
-    icon: renderIcon(HomeIcon),
+    icon: renderIcon(WaystoneIcon),
   },
-  // 分隔线
-  {
-    key: 'divider-1',
-    type: 'divider',
-    props: {
-      style: {
-        marginLeft: '32px',
-      },
-    },
-  },
+
   {
     label: () =>
       h(
         RouterLink,
         {
           to: {
-            path: '/table',
+            path: '/tablet',
           },
         },
-        { default: () => '碑牌正则' },
+        { default: () => t('app.menutablet') }, //碑牌
       ),
-    key: 'Table',
-    icon: renderIcon(WorkIcon),
+    key: 'Tablet',
+    icon: renderIcon(TabletIcon),
   },
   {
     label: () =>
@@ -78,10 +90,10 @@ const menuOptions: MenuOption[] = [
             path: '/relics',
           },
         },
-        { default: () => '圣物正则' },
+        { default: () => t('app.menurelics') }, //聖物
       ),
     key: 'Relics',
-    icon: renderIcon(WorkIcon),
+    icon: renderIcon(RelicIcon),
   },
   {
     label: () =>
@@ -92,10 +104,20 @@ const menuOptions: MenuOption[] = [
             path: '/vendor',
           },
         },
-        { default: () => '商店正则' },
+        { default: () => t('app.menuvendor') }, //商店
       ),
     key: 'Vendor',
-    icon: renderIcon(WorkIcon),
+    icon: renderIcon(VendorIcon),
+  },
+  // 分隔线
+  {
+    key: 'divider-1',
+    type: 'divider',
+    props: {
+      style: {
+        marginLeft: '32px',
+      },
+    },
   },
   {
     label: () =>

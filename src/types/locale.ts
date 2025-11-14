@@ -1,6 +1,6 @@
 // 支持的语言类型
-export type LocaleType = 'zh-CN' | 'en' | 'zh-TW'
-
+export type LocaleType = 'zh-CN' | 'zh-TW'
+// export type LocaleType = 'zh-CN' | 'en' | 'zh-TW'
 // 语言选项类型
 export interface LocaleOption {
   label: string

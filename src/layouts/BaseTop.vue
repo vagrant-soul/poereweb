@@ -11,7 +11,7 @@
   >
     <div class="left-group" style="display: flex; align-items: center; gap: 16px">
       <n-image width="30" src="../public/UniqueAtlasSkillBook.png" preview-disabled />
-      <div>{{ $t('app.title') }}</div>
+      <div class="app-title">{{ $t('app.title') }}</div>
     </div>
 
     <!-- 右侧区域：语言选择、功能图标、赞助按钮 -->
@@ -43,3 +43,12 @@ import { NIcon } from 'naive-ui'
 
 const themeStore = useThemeStore()
 </script>
+
+<style scoped>
+.app-title {
+  font-size: 18px; /* 加大字体 */
+  font-weight: 600; /* 加粗 */
+  color: var(--n-text-color-primary); /* 使用主题色变量，适配暗色模式 */
+  letter-spacing: 0.5px; /* 稍微增加字间距提升可读性 */
+}
+</style>
