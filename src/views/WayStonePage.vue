@@ -64,10 +64,20 @@
         <n-flex class="right-section" vertical flex="1">
           <!-- 六词缀地图 -->
           <div class="options-group">
-            <!-- <h3 class="group-title">六词缀地图</h3> -->
-            <n-checkbox v-model:checked="SixModMaps" value="{{SixModMapOptions.value}}">{{
+            <h3 class="group-title">复活门数量</h3>
+            <!-- <n-checkbox v-model:checked="SixModMaps" value="{{SixModMapOptions.value}}">{{
               SixModMapOptions.label
-            }}</n-checkbox>
+            }}</n-checkbox> -->
+            <n-checkbox-group v-model:value="SixModMaps" class="checkbox-wrapper">
+              <n-space>
+                <n-checkbox
+                  v-for="option in SixModMapOptions"
+                  :key="option.value"
+                  :value="option.value"
+                  :label="option.label"
+                />
+              </n-space>
+            </n-checkbox-group>
           </div>
           <!-- 地图等级 -->
           <div class="options-group">
@@ -96,6 +106,16 @@
               />
             </n-flex>
           </div>
+          <!-- 地图物品稀有度 -->
+          <div class="options-group">
+            <span class="group-title">物品稀有度不低于</span>
+            <n-input
+              v-model:value="ItemRarityMinValue"
+              placeholder="最小值"
+              style="width: 110px"
+              clearable
+            />
+          </div>
         </n-flex>
       </n-flex>
     </n-card>
@@ -104,6 +124,7 @@
 <script setup lang="ts">
 import Result from '@/components/ReSult.vue'
 import { ref, computed } from 'vue'
+import { generateNumberRegex } from '@/utils/GenerateNumberRegex' //通用计算函数
 // 正则选项配置
 const radioOptions = [
   { label: '完全匹配', value: 'and' },
@@ -124,18 +145,28 @@ const CorruptedOptions = [
 const AdditionalOptions = { label: '区域包含任意<额外怪物>', value: '有額' }
 // 右侧部分
 // 六词缀地图
-const SixModMapOptions = { label: '六词缀地图', value: '數: 0' }
+const SixModMapOptions = [
+  { label: '0门', value: '0' },
+  { label: '1门', value: '1' },
+  { label: '2门', value: '2' },
+  { label: '3门', value: '3' },
+]
 // 換界石階級
 const TierDisabled = ref(false)
 const TierMinValue = ref(1)
 const TierMaxValue = ref(16)
+// 地图物品稀有度 Item Rarity: +148%
+const ItemRarityMinValue = ref<string>('')
+const ItemRarity = computed(() => {
+  return addQuantifier('品稀.*', generateNumberRegex(ItemRarityMinValue.value.toString(), false))
+})
 // 响应式数据
 const selectedRadioOption = ref<string>('and')
 const WaystoneRarity = ref<string[]>([])
 const WaystoneCorrupted = ref<string>('')
 const AdditionalPacks = ref(false)
 
-const SixModMaps = ref(false)
+const SixModMaps = ref<string[]>([])
 // 重置函数
 const handleReset = () => {
   // 重置所有选择项
@@ -144,14 +175,22 @@ const handleReset = () => {
   AdditionalPacks.value = false
   selectedRadioOption.value = 'and'
 
-  SixModMaps.value = false
+  SixModMaps.value = []
   TierMinValue.value = 1
   TierMaxValue.value = 16
   TierDisabled.value = false
-
+  ItemRarityMinValue.value = ''
   // 可以在这里添加重置后的其他逻辑，如提示信息
 }
+// 通用数据函数
 
+// 这个是添加前缀+正则字符串的通用函数
+function addQuantifier(prefix: string, string: string) {
+  if (string === '') {
+    return ''
+  }
+  return `"${prefix}${string}%"`
+}
 // 修改displayText计算属性，直接显示value值
 const displayText = computed(() => {
   const results: string[] = []
@@ -178,8 +217,25 @@ const displayText = computed(() => {
     results.push(`"${AdditionalOptions.value}"`)
   }
   // 处理六词缀地图
-  if (SixModMaps.value) {
-    results.push(`"${SixModMapOptions.value}"`)
+
+  if (SixModMaps.value.length === 1) {
+    // 单选时直接显示值
+    results.push(`"活數:${SixModMaps.value[0]}"`)
+  } else if (SixModMaps.value.length > 1) {
+    // 多选时使用优化后的正则表达式
+    const min = Math.min(...SixModMaps.value.map((v) => parseInt(v)))
+    const max = Math.max(...SixModMaps.value.map((v) => parseInt(v)))
+
+    // 检查是否是连续数字范围
+    const isContinuous = SixModMaps.value.length === max - min + 1
+
+    if (isContinuous) {
+      // 如果是连续范围，使用范围表达式
+      results.push(`"活數:[${min}-${max}]"`)
+    } else {
+      // 否则使用不带竖线的字符集（在字符类中竖线是普通字符）
+      results.push(`"活數:[${SixModMaps.value.join('|')}]"`)
+    }
   }
 
   // 处理換界石階級 - 生成正则表达式
@@ -219,6 +275,10 @@ const displayText = computed(() => {
         }
       }
     }
+  }
+  // 处理地图物品稀有度
+  if (ItemRarityMinValue.value !== null) {
+    results.push(ItemRarity.value)
   }
   // 最后的输出
   return results.length > 0 ? results.join('\n') : ''
