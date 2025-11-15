@@ -77,18 +77,22 @@
               <n-input-number
                 v-model:value="TierMinValue"
                 button-placement="both"
+                placeholder="最小值"
                 :min="1"
                 :max="16"
-                style="width: 80px"
+                style="width: 130px"
                 :disabled="!TierDisabled"
+                clearable
               />
               <n-input-number
                 v-model:value="TierMaxValue"
                 button-placement="both"
+                placeholder="最大值"
                 :min="1"
                 :max="16"
-                style="width: 80px"
+                style="width: 130px"
                 :disabled="!TierDisabled"
+                clearable
               />
             </n-flex>
           </div>
