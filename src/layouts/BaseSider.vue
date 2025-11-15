@@ -22,10 +22,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { LaptopOutline as WorkIcon } from '@vicons/ionicons5'
-import WaystoneIcon from '../../public/waystone_icon.png'
-import RelicIcon from '../../public/relic_icon.png'
-import TabletIcon from '../../public/tablet_icon.png'
-import VendorIcon from '../../public/vendor_icon.png'
+
 import type { MenuOption } from 'naive-ui'
 import { NIcon } from 'naive-ui'
 import { h, ref } from 'vue'
@@ -64,7 +61,7 @@ const menuOptions: MenuOption[] = [
         { default: () => t('app.menuwaystones') }, //換界石
       ),
     key: 'WayStone',
-    icon: renderIcon(WaystoneIcon),
+    icon: renderIcon('/waystone_icon.png'),
   },
 
   {
@@ -79,7 +76,7 @@ const menuOptions: MenuOption[] = [
         { default: () => t('app.menutablet') }, //碑牌
       ),
     key: 'Tablet',
-    icon: renderIcon(TabletIcon),
+    icon: renderIcon('/tablet_icon.png'),
   },
   {
     label: () =>
@@ -93,7 +90,7 @@ const menuOptions: MenuOption[] = [
         { default: () => t('app.menurelics') }, //聖物
       ),
     key: 'Relics',
-    icon: renderIcon(RelicIcon),
+    icon: renderIcon('/relic_icon.png'),
   },
   {
     label: () =>
@@ -107,7 +104,7 @@ const menuOptions: MenuOption[] = [
         { default: () => t('app.menuvendor') }, //商店
       ),
     key: 'Vendor',
-    icon: renderIcon(VendorIcon),
+    icon: renderIcon('/vendor_icon.png'),
   },
   // 分隔线
   {

@@ -35,12 +35,9 @@ declare module 'vue' {
     NRadioGroup: typeof import('naive-ui')['NRadioGroup']
     NSpace: typeof import('naive-ui')['NSpace']
     NText: typeof import('naive-ui')['NText']
-    NThing: typeof import('naive-ui')['NThing']
     NTooltip: typeof import('naive-ui')['NTooltip']
-    Result: typeof import('./src/components/Result.vue')['default']
     ReSult: typeof import('./src/components/ReSult.vue')['default']
     'ReSult copy': typeof import('./src/components/ReSult copy.vue')['default']
-    Resultpage: typeof import('./src/components/Resultpage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

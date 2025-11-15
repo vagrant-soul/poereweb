@@ -10,7 +10,7 @@
     "
   >
     <div class="left-group" style="display: flex; align-items: center; gap: 16px">
-      <n-image width="30" src="../public/UniqueAtlasSkillBook.png" preview-disabled />
+      <n-image width="30" src="/UniqueAtlasSkillBook.png" preview-disabled />
       <div class="app-title">{{ $t('app.title') }}</div>
     </div>
 
